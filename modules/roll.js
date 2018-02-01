@@ -32,8 +32,8 @@ module.exports = function(text){
 	}
 	var rolls = [];
 	for(var dice = 1; dice <= number_of_rolls; dice ++){
-		var result = Math.floor(Math.random() * (number_of_faces +1));
-		rolls.push(result);
+		var result = Math.floor(Math.random() * (number_of_faces));
+		rolls.push(result + 1);
 	}
 	return rolls;
 }
