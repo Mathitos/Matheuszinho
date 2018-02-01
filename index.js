@@ -14,23 +14,22 @@ Matheuszinho.on('message', (message) => {
 
   if(message.content[0] == comand_key){
     text_content = message.content.substring(1,message.content.lenght);
+
+
     if(text_content == 'ping'){
       message.channel.send('pong!');
-    }else if(text_content.substring(0, 4) == 'roll'){
+    }else
+
+
+		if(text_content.substring(0, 4) == 'roll'){
 			message.channel.send('Vou rolar: ' + text_content.substring(4, text_content.length));
 			var rolls = roll(text_content.substring(4, text_content.length));
 			message.channel.send('Resultado: ' + rolls);
-			for(var i = 0; i < rolls.length; i++){
-				if(isNaN(rolls[i])){
-					message.channel.send(rolls[i]);
-				} else{
-					message.channel.send('Dado ' + i + ': ' + rolls[i]);
-					if(rolls[i] == 1){
-						message.channel.send('\nSe fudeu!' + '\n' + ' hahahahahahahha')
-					}
-				}
-			}
-    }
+    }//else
+
+
+		//if
+
 
 
 
