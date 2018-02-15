@@ -3,7 +3,7 @@ console.log("Oi, estou pronto para ajudar meus amiguinhos!!!");
 const Discord = require('discord.js');
 const Config = require('./config.js');
 const Matheuszinho = new Discord.Client();
-const comand_key = Config.command_key;
+const command_key = Config.command_key;
 
 const roll = require('./modules/roll.js')
 
@@ -20,26 +20,21 @@ Matheuszinho.on('message', (message) => {
   if(message.author.equals(Matheuszinho.user)) return;
 
   //Comandos
-  if(message.content[0] == comand_key){
-    text_content = message.content.substring(1,message.content.lenght);
+  if(message.content[0] == command_key){
+    var args = message.content.substring(command_key.length).split(" ");
 
+    switch(args[0].toLowerCase()){
+      case 'ping':
+        message.channel.send('pong!');
+        break;
+      case 'roll':
+        var rolls = roll(text_content.substring(4, text_content.length));
+  			message.channel.send('Resultado: ' + rolls);
+        break;
+      default:
+        message.channel.send('Invalid Command');
 
-    if(text_content == 'ping'){
-      message.channel.send('pong!');
-    }else
-
-		if(text_content.substring(0, 4) == 'roll'){
-			message.channel.send('Vou rolar: ' + text_content.substring(4, text_content.length));
-			var rolls = roll(text_content.substring(4, text_content.length));
-			message.channel.send('Resultado: ' + rolls);
-    }//else
-
-
-		//if
-
-
-
-
+    }
   }
 });
 
