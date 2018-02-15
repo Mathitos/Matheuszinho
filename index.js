@@ -10,8 +10,16 @@ const roll = require('./modules/roll.js')
 //empty obj to create server queues, dont need to use in a single server
 var servers = {};
 
-Matheuszinho.on('message', (message) => {
 
+// Inicializa os atributos do Matheuszinho
+Matheuszinho.on('ready', () => {
+  Matheuszinho.user.setActivity('Quero Ajudar')
+})
+Matheuszinho.on('message', (message) => {
+  //Para o bot não usar os próprios comandos
+  if(message.author.equals(Matheuszinho.user)) return;
+
+  //Comandos
   if(message.content[0] == comand_key){
     text_content = message.content.substring(1,message.content.lenght);
 
@@ -19,7 +27,6 @@ Matheuszinho.on('message', (message) => {
     if(text_content == 'ping'){
       message.channel.send('pong!');
     }else
-
 
 		if(text_content.substring(0, 4) == 'roll'){
 			message.channel.send('Vou rolar: ' + text_content.substring(4, text_content.length));
