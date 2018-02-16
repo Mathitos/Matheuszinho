@@ -28,8 +28,8 @@ Matheuszinho.on('message', (message) => {
         message.channel.send('pong!');
         break;
       case 'roll':
-        var rolls = roll(text_content.substring(4, text_content.length));
-  			message.channel.send('Resultado: ' + rolls);
+        var outputs = roll(args.slice(1));
+  			message.channel.send(outputs);
         break;
       default:
         message.channel.send('Invalid Command');
