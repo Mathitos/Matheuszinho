@@ -20,21 +20,24 @@ Matheuszinho.on('message', (message) => {
   if(message.author.equals(Matheuszinho.user)) return;
 
   //Comandos
-  if(message.content[0] == command_key){
-    var args = message.content.substring(command_key.length).split(" ");
+  if(!(message.content.substring(command_key.length) == command_key)) return;
+  var args = message.content.substring(command_key.length).split(" ");
 
-    switch(args[0].toLowerCase()){
-      case 'ping':
-        message.channel.send('pong!');
-        break;
-      case 'roll':
-        var outputs = roll(args.slice(1));
-  			message.channel.send(outputs);
-        break;
-      default:
-        message.channel.send('Invalid Command');
+  switch(args[0].toLowerCase()){
+    case 'ping':
+      message.channel.send('pong!');
+      break;
+    case 'roll':
+      var outputs = roll(args.slice(1));
+			message.channel.send(outputs);
+      break;
+    case 'play':
+      if(!args[1])message.channel.send('Vou tocar oque se você não me deu um link, idiota ...');
+      if(message.member.voiceChannel)message.channel.send('Vou tocar aonde se você não está num canal, idiota ...');
+      if(!servers[message.guild.id]) servers[message.guild.id] = {queue = [] };
+    default:
+      message.channel.send('Invalid Command');
 
-    }
   }
 });
 
